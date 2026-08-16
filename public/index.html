@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="description" content="Halaha AI - مساعد ذكاء اصطناعي عربي يساعدك على تحويل أفكارك ومشاكلك إلى حلول عملية.">
+  <meta name="theme-color" content="#080b14">
+
+  <title>Halaha AI — مساعدك الذكي</title>
+
+  <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+
+  <div class="background-glow glow-one"></div>
+  <div class="background-glow glow-two"></div>
+
+  <main class="container">
+
+    <header class="navbar">
+
+      <a class="brand" href="/">
+        <span class="brand-icon">✦</span>
+        <span>Halaha <b>AI</b></span>
+      </a>
+
+      <div class="status-badge">
+        <span class="status-dot"></span>
+        يعمل الآن
+      </div>
+
+    </header>
+
+    <section class="hero">
+
+      <div class="eyebrow">
+        <span>✦</span>
+        مساعدك الذكي
+      </div>
+
+      <h1>
+        حوّل مشكلتك إلى
+        <span>حل عملي.</span>
+      </h1>
+
+      <p class="subtitle">
+        اكتب ما تحتاجه، ودع الذكاء الاصطناعي يساعدك
+        على التفكير، التحسين، وإيجاد الحلول.
+      </p>
+
+      <div class="features">
+        <span>⚡ سريع</span>
+        <span>◆ بسيط</span>
+        <span>✦ بالعربية</span>
+      </div>
+
+    </section>
+
+    <section class="ai-card">
+
+      <div class="mode-header">
+        <div>
+          <div class="card-title">ماذا تريد أن تفعل؟</div>
+          <div class="card-description">اختر طريقة المساعدة المناسبة لك</div>
+        </div>
+      </div>
+
+      <div class="modes">
+
+        <button class="mode active" data-mode="general">
+          <span class="mode-icon">✦</span>
+          <span>
+            <strong>مساعدة عامة</strong>
+            <small>اسأل عن أي شيء</small>
+          </span>
+        </button>
+
+        <button class="mode" data-mode="improve">
+          <span class="mode-icon">✎</span>
+          <span>
+            <strong>تحسين النص</strong>
+            <small>اجعل نصك أفضل</small>
+          </span>
+        </button>
+
+        <button class="mode" data-mode="idea">
+          <span class="mode-icon">💡</span>
+          <span>
+            <strong>حل مشكلة</strong>
+            <small>حوّل المشكلة إلى خطة</small>
+          </span>
+        </button>
+
+      </div>
+
+      <div class="input-wrapper">
+
+        <textarea
+          id="input"
+          placeholder="اكتب سؤالك أو مشكلتك هنا..."
+          maxlength="5000"
+        ></textarea>
+
+        <div class="input-footer">
+
+          <span class="counter">
+            <span id="counter">0</span> / 5000
+          </span>
+
+          <button id="send" type="button">
+            <span>إرسال</span>
+            <span class="send-icon">➜</span>
+          </button>
+
+        </div>
+
+      </div>
+
+      <div id="status"></div>
+
+    </section>
+
+    <section id="result" class="result hidden">
+
+      <div class="result-header">
+
+        <div class="result-title">
+          <span class="result-icon">✦</span>
+          <div>
+            <strong>إجابة Halaha AI</strong>
+            <small>تم إنشاء الإجابة بنجاح</small>
+          </div>
+        </div>
+
+        <button id="copy" class="copy-btn" type="button">
+          نسخ الإجابة
+        </button>
+
+      </div>
+
+      <div id="answer"></div>
+
+    </section>
+
+    <footer>
+
+      <div class="footer-brand">
+        ✦ Halaha AI
+      </div>
+
+      <p>
+        مساعد ذكاء اصطناعي عربي لمساعدتك على التفكير وحل المشكلات.
+      </p>
+
+      <span class="copyright">
+        © 2026 Halaha AI
+      </span>
+
+    </footer>
+
+  </main>
+
+  <script src="/app.js"></script>
+
+</body>
+</html>
