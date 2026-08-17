@@ -1,15 +1,24 @@
 import "dotenv/config";
 import express from "express";
+import path from "path";
+import { fileURLToPath } from "url";
 
 const app = express();
 
-app.use(express.json({ limit: "1mb" }));
-app.use(express.static("public"));
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
+app.use(express.json({ limit: "1mb" }));
+
+// عرض ملفات الموقع
+app.use(express.static(path.join(__dirname, "public")));
+
+// الصفحة الرئيسية
 app.get("/", (req, res) => {
-  res.sendFile(process.cwd() + "/public/index.html");
+  res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
+// API الذكاء الاصطناعي
 app.post("/api/ai", async (req, res) => {
   try {
     const { text, mode = "general" } = req.body;
@@ -31,17 +40,15 @@ app.post("/api/ai", async (req, res) => {
       "\n\nطلب المستخدم:\n" +
       text;
 
-    const apiKey = process.env.GEMINI_API_KEY;
-
-    if (!apiKey) {
+    if (!process.env.GEMINI_API_KEY) {
       return res.status(500).json({
-        error: "GEMINI_API_KEY غير موجود في إعدادات الخادم."
+        error: "GEMINI_API_KEY غير موجود."
       });
     }
 
     const response = await fetch(
       "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash-lite:generateContent?key=" +
-        apiKey,
+        process.env.GEMINI_API_KEY,
       {
         method: "POST",
         headers: {
@@ -87,15 +94,14 @@ app.post("/api/ai", async (req, res) => {
   }
 });
 
-// Vercel يحتاج app نفسه
+// Vercel
 export default app;
 
-// تشغيل محلي فقط
+// تشغيل محلي
 if (process.env.NODE_ENV !== "production") {
   const port = process.env.PORT || 3000;
 
   app.listen(port, () => {
-    console.log("===== HALAHA AI =====");
     console.log(`AI site running at http://localhost:${port}`);
   });
 }
