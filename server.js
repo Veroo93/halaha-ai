@@ -66,13 +66,25 @@ app.post("/api/ai", async (req, res) => {
 
     const data = await response.json();
 
-    if (!response.ok) {
-      console.error("GEMINI ERROR:", data);
+   if (!response.ok) {
+  console.error("GEMINI ERROR:", data);
 
-      return res.status(response.status).json({
-        error: data.error?.message || "حدث خطأ من Gemini."
-      });
-    }
+  const message = data.error?.message || "";
+
+  if (
+    response.status === 429 ||
+    message.toLowerCase().includes("quota") ||
+    message.toLowerCase().includes("resource exhausted")
+  ) {
+    return res.status(429).json({
+      error: "⚠️ انتهت الحصة المجانية مؤقتًا. حاول مرة أخرى لاحقًا."
+    });
+  }
+
+  return res.status(response.status).json({
+    error: "حدث خطأ مؤقت في الذكاء الاصطناعي. حاول مرة أخرى."
+  });
+}
 
     const answer =
       data.candidates?.[0]?.content?.parts?.[0]?.text;
